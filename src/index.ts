@@ -1,5 +1,7 @@
+import { noUseBeforeDefine } from './no-use-before-define'
+
 module.exports = {
     rules: {
-        // add rules here
+        'no-use-before-define': noUseBeforeDefine,
     },
 };

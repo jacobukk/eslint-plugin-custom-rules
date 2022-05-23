@@ -1,6 +1,5 @@
-import { AST_NODE_TYPES, TSESLint, TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES, ESLintUtils, TSESLint, TSESTree } from '@typescript-eslint/utils';
 import { DefinitionType } from '@typescript-eslint/scope-manager';
-import * as util from '../util';
 
 const SENTINEL_TYPE =
   /^(?:(?:Function|Class)(?:Declaration|Expression)|ArrowFunctionExpression|CatchClause|ImportDeclaration|ExportNamedDeclaration)$/;
@@ -222,7 +221,11 @@ interface Config {
 type Options = ['nofunc' | Config];
 type MessageIds = 'noUseBeforeDefine';
 
-export default util.createRule<Options, MessageIds>({
+const createRule = ESLintUtils.RuleCreator(
+  name => `https://typescript-eslint.io/rules/${name}`,
+);
+
+export const noUseBeforeDefine = createRule<Options, MessageIds>({
   name: 'no-use-before-define',
   meta: {
     type: 'problem',
