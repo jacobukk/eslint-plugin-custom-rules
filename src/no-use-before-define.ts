@@ -324,7 +324,8 @@ export const noUseBeforeDefine = createRule<Options, MessageIds>({
             !isInInitializer(variable, reference)) ||
           !isForbidden(variable, reference) ||
           isClassRefInClassDecorator(variable, reference) ||
-          reference.from.type === TSESLint.Scope.ScopeType.functionType
+          reference.from.type === TSESLint.Scope.ScopeType.functionType ||
+          variable.name === 'styles'
         ) {
           return;
         }
